@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "667244207769",
+    "project_id": "repairschuedule",
+    "storage_bucket": "repairschuedule.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667244207769:android:4b884d70203f8549a3e208",
+        "android_client_info": {
+          "package_name": "com.cudev.repair_schedule_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667244207769-lbogg5b4pgerqv7aumuq3b5p3o1q76ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMPOScj5x106DLsVCA82EOriaw9xJIgzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667244207769-lbogg5b4pgerqv7aumuq3b5p3o1q76ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
