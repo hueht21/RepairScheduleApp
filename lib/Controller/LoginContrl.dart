@@ -37,6 +37,7 @@ class LoginControl {
 
       //Get.to(Home());
       Get.to(() => Home());
+      //Get.p
 
       //print(user);
     } else {
