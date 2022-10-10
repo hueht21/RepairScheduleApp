@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:repair_schedule_app/Utils/svg.dart';
 
-import '../Utils/img.dart';
+import '../../../Utils/img.dart';
 
 class HomePageControl extends GetxController {
 
@@ -14,38 +16,40 @@ class HomePageControl extends GetxController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
-    // loadIcon();
-    // addMarker("Test", current);
+    log("message");
   }
-
+  //
+  //
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     // await BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(48, 48)), "assets/img/map.png")
     //     .then((onValue) {
     //       myIcon = onValue;
     //     });
-
+    log("dayyy ");
   }
 
   late GoogleMapController mapController;
   final Completer<GoogleMapController> controllerMap = Completer();
+  List<Marker> allMarkers = <Marker>[].obs;
   indexMap(double x, double y)
   {
     LatLng current =  LatLng(x, y);
     return current;
   }
 
-  //LatLng current2 = const LatLng(20.97902398945378, 105.79489933934353);
+  LatLng current2 = const LatLng(20.97902398945378, 105.79489933934353);
   CameraPosition kGooglePlex = const CameraPosition(
     target: LatLng(20.98309121380638, 105.80134688698458),
     zoom: 14.4746,
   );
   Map<String, Marker> marker = {};
-  BitmapDescriptor? myIcon;
+ //BitmapDescriptor? myIcon;
+
   Future<BitmapDescriptor> loadIcon() async {
     BitmapDescriptor icons = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(48, 48)), "assets/img/mapicon.png");
+        const ImageConfiguration(size: Size(68, 68)), "assets/img/mapusericon.png");
     return icons;
   }
 
@@ -59,6 +63,7 @@ class HomePageControl extends GetxController {
       icon: await loadIcon()
     );
    // marker.addAll(maker)
+    allMarkers.add(maker);
     marker[id] = maker;
     //markerrr = maker;
   }

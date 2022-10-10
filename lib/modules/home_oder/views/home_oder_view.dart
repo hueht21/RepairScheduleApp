@@ -4,10 +4,15 @@ import 'package:flutter/widgets.dart';
 class HomeOder extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          child: Center(child: Text("Đay la home Odder")),
+          child: Column(
+            children: [
+              Image.asset("assets/img/mapicon.png"),
+              const Center(child: Text("Đay la home Odder")),
+            ],
+          ),
         ),
       ),
     );

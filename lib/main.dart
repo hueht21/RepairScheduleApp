@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'View/Home.dart';
-import 'View/LoginView.dart';
+import 'package:repair_schedule_app/routes/app_pages.dart';
 
 void main() {
-
-  runApp(const MyApp());
+  runApp(
+    GetMaterialApp(
+      title: "Application",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Home(),
-    );
-  }
-}
 

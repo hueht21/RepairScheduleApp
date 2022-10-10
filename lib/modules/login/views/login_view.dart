@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
-import '../Controller/LoginContrl.dart';
-import '../Utils/img.dart';
+import '../controllers/login_controllers.dart';
+import '../../../Utils/img.dart';
 
 class LoginView extends StatelessWidget {
-  TextEditingController edtEmail = TextEditingController();
-  TextEditingController edtPass = TextEditingController();
-
+  TextEditingController edtEmail = TextEditingController(text: "phamngochue127@gmail.com");
+  TextEditingController edtPass = TextEditingController(text: "12345678");
+//cái này init ở main
   Future<FirebaseApp> _initalizeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;

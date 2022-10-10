@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:repair_schedule_app/View/Home.dart';
+import 'package:repair_schedule_app/modules/home/views/home_view.dart';
 
 
 
@@ -34,11 +34,7 @@ class LoginControl {
           margin: const EdgeInsets.only(top: 6, left: 3, right: 3),
           colorText: Colors.black,
           backgroundColor: Colors.white);
-
-      //Get.to(Home());
-      Get.to(() => Home());
-      //Get.p
-
+          Get.toNamed("/home");
       //print(user);
     } else {
       Get.snackbar("Thông báo", "Email và mật khẩu không đúng",

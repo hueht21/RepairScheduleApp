@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:repair_schedule_app/Controller/HomeControler.dart';
-import 'package:repair_schedule_app/View/HomeOder.dart';
-import 'package:repair_schedule_app/View/HomePage.dart';
+import 'package:repair_schedule_app/modules/home/controllers/home_controller.dart';
+import 'package:repair_schedule_app/modules/home_oder/views/home_oder_view.dart';
+import 'package:repair_schedule_app/modules/home_map/views/home_map_view.dart';
 
-import '../Utils/svg.dart';
-import 'HomeUser.dart';
+import '../../../Utils/svg.dart';
+import '../../home_user/views/home_user_view.dart';
 
-class Home extends StatelessWidget {
-  final Facment = [HomePage(), HomeOder(), HomeUser()];
+class HomeView extends StatelessWidget {
+  final Facment = [HomeMap(), HomeOder(), HomeUser()];
 
   @override
   Widget build(BuildContext context) {
