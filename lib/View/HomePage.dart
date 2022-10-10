@@ -23,9 +23,11 @@ class HomePage extends StatelessWidget {
             initialCameraPosition: controller.kGooglePlex,
             onMapCreated: (GoogleMapController control) {
               controller.controllerMap.complete(control);
-              controller.addMarker("Test", controller.current);
+              controller.addMarker("Test", controller.indexMap(20.98309121380638,105.80134688698458));
+              controller.addMarker("Test2",controller.indexMap(20.974533035238895, 105.80417179478226));
             },
             markers: controller.marker.values.toSet(),
+            //markers: Set<Marker>.of(controller.listMaker),
           )),
     );
   }
