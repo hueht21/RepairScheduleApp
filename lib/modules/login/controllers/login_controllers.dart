@@ -5,30 +5,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:repair_schedule_app/modules/home/views/home_view.dart';
 
 
 
-class LoginControl {
-  static Future<User?> loginUsingEmailPasss({ required String email, required String pass , required BuildContext context}) async {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      User? user ;
-      try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: pass);
-        user = userCredential.user;
+class LoginControler extends GetxController {
 
-      } on FirebaseAuthException catch(e) {
-        if(e.code == "user-not-found")
-          {
-            print("Khong tim thay email");
-          }
-      }
-      return user;
+  Future<FirebaseApp> initalizeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
   }
-  static void Loginn({required String email, required String pass, required BuildContext context}) async
+  Future<User?> loginUsingEmailPasss({required String email, required String pass, required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential =
+      await auth.signInWithEmailAndPassword(email: email, password: pass);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("Khong tim thay email");
+      }
+    }
+    return user;
+  }
+
+  void Loginn({required String email, required String pass, required BuildContext context}) async
   {
     //_onLoading(context);
-    User? user = await LoginControl.loginUsingEmailPasss(email: email, pass: pass, context: context);
+    User? user = await loginUsingEmailPasss(email: email, pass: pass, context: context);
     if (user != null) {
       Get.snackbar("Thông báo", "Đăng nhập thành công",
           margin: const EdgeInsets.only(top: 6, left: 3, right: 3),
@@ -43,30 +47,5 @@ class LoginControl {
           backgroundColor: Colors.white);
     }
   }
-  static void _onLoading(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: SizedBox(
-            height: 70,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                SizedBox(width: 10,),
-                 CircularProgressIndicator(strokeWidth: 3.0,),
-                SizedBox(width: 10,),
-                 Text("Loading"),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-     Future.delayed( const Duration(seconds: 2), () {
-      Navigator.pop(context); //pop dialog
 
-    });
-  }
 }
