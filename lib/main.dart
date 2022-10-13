@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repair_schedule_app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  //initalizeFirebase();
   runApp(
     GetMaterialApp(
       title: "Application",
@@ -14,5 +15,9 @@ void main() {
   );
 
 }
+// Future<FirebaseApp> initalizeFirebase() async {
+//   FirebaseApp firebaseApp = await Firebase.initializeApp();
+//   return firebaseApp;
+// }
 
 
