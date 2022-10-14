@@ -1,13 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-
+import '../../../app/utils/img.dart';
 import '../controllers/login_controllers.dart';
-import '../../../Utils/img.dart';
 
 class LoginView extends StatelessWidget {
   TextEditingController edtEmail = TextEditingController(text: "phamngochue127@gmail.com");

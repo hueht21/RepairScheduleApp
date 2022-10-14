@@ -1,16 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:repair_schedule_app/modules/home/controllers/home_controller.dart';
-import 'package:repair_schedule_app/modules/login/controllers/login_controllers.dart';
-
-import '../../../Utils/img.dart';
+import 'package:repair_schedule_app/data/models/repair.dart';
+import '../../../app/utils/img.dart';
 import '../views/item_bottom_sheet.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePageControl extends GetxController {
   RxDouble latitude = 20.99213800591695.obs;
@@ -19,6 +19,10 @@ class HomePageControl extends GetxController {
   late BitmapDescriptor icon;
   late BitmapDescriptor iconRepair;
   int idex =0;
+  RxList<Repair> list = RxList([]);
+  late GoogleMapController mapController;
+  final Completer<GoogleMapController> controllerMap = Completer();
+  RxList<Marker> allMarkers = RxList([]);
    @override
   void onClose() {
     // TODO: implement onClose
@@ -32,13 +36,12 @@ class HomePageControl extends GetxController {
     log("đã được vào redy ");
 
   }
-
   @override
   void onInit() async {
     super.onInit();
-
     await loadIcon();
     await loadIconRepair();
+    // await getDataRepair();
     await getLocation();
     //log("dữ liệu UID đã chuyển đổi sang màn mới" + HomeControler.Uid);
     //getLatitude();
@@ -46,10 +49,25 @@ class HomePageControl extends GetxController {
     //     .then((onValue) {
     //       myIcon = onValue;
     //     });
-
-    log("dayyy ");
+    log("dayyy nayyyyyyyyyy");
   }
-  //LoginControler loginControler = Lo
+  Future getDataRepair() async
+  {
+    await FirebaseFirestore.instance.collection("Repair").get().then((snapshot) => snapshot.docs.forEach((element)  {
+      Repair repair =  getRepair(element.data());
+      list.add(repair);
+      // log("${list[0].name}");
+    }));
+
+  }
+  // Future<List<Repair>> getList(Repair repair) async
+  // {
+  //   return await list.add(repair);
+  // }
+  Repair getRepair(Map<String,dynamic> map) 
+  {
+    return Repair.fromJsonString(map);
+  }
   getLocation() async {
     bool serviceEnable;
     LocationPermission permission;
@@ -79,10 +97,6 @@ class HomePageControl extends GetxController {
       longitude.value = position.longitude;
     });
   }
-  late GoogleMapController mapController;
-  final Completer<GoogleMapController> controllerMap = Completer();
-  RxList<Marker> allMarkers = RxList([]);
-
   indexMap(double x, double y) {
     LatLng current = LatLng(x, y);
     return current;
@@ -122,9 +136,9 @@ class HomePageControl extends GetxController {
     var maker = Marker(
         markerId: MarkerId(id),
         position: local,
-        // infoWindow: const InfoWindow(
-        //     title: "Đinh Văn Khánh",
-        //     snippet: "Có kinh nghiệm 4 năm"),
+        infoWindow: const InfoWindow(
+            title: "Đinh Văn Khánh",
+            snippet: "Có kinh nghiệm 4 năm"),
         icon: iconRepair,
         onTap: ()
         {
@@ -133,7 +147,6 @@ class HomePageControl extends GetxController {
               log("da vao dayy 1");
               Get.bottomSheet(
                 ItemRepairView(),
-                //barrierColor: Colors.red[50],
                 isDismissible: false,
               );
             }

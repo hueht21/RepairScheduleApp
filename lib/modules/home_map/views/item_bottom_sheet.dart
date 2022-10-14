@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:repair_schedule_app/Utils/font_ui.dart';
 import 'package:get/get.dart';
-import '../../../Utils/img.dart';
-import '../../../Utils/svg.dart';
 
+import '../../../app/utils/font_ui.dart';
+import '../../../app/utils/img.dart';
+import '../../../app/utils/svg.dart';
 class ItemRepairView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {

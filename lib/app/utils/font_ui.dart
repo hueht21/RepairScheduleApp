@@ -7,7 +7,7 @@ class FontStyleHomeMap {
   static TextStyle font20BoldP() {
     return GoogleFonts.plusJakartaSans().copyWith(
         fontSize: 20,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w400,
         color: const Color(0xff574B78));
   }
 
