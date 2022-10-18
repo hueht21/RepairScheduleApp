@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:repair_schedule_app/data/models/repair.dart';
 
 import '../../../app/utils/font_ui.dart';
 import '../../../app/utils/img.dart';
 import '../../../app/utils/svg.dart';
 class ItemRepairView extends StatelessWidget{
+  Repair repair;
+  ItemRepairView({required this.repair});
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
         height: 330,
-        //color: Colors.white,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -64,7 +68,7 @@ class ItemRepairView extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(width: 15,),
-                Text("Địa chỉ : 111- Xuân hoà - Cầu giấy - Hà nội",style: FontStyleHomeMap.font13W200(),),
+                Text("Địa chỉ : ${repair.address}",style: FontStyleHomeMap.font13W200(),),
               ],
             ),
             const SizedBox(
@@ -101,11 +105,11 @@ class ItemRepairView extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Đinh Việt Anh", style: FontStyleHomeMap.font20BoldP().copyWith(fontWeight: FontWeight.w400),),
+                Text("${repair.name}", style: FontStyleHomeMap.font20BoldP().copyWith(fontWeight: FontWeight.w400),),
                 const SizedBox(height: 2,),
                 Row(
                   children: [
-                    Text("0376929500",style: FontStyleHomeMap.font15(),),
+                    Text("${repair.phone}",style: FontStyleHomeMap.font15(),),
                     const Flexible(fit: FlexFit.tight, child: SizedBox()),
                     SizedBox(
                         height: 26,
@@ -128,7 +132,7 @@ class ItemRepairView extends StatelessWidget{
                 ),
                 Row(
                   children: [
-                    for(int i =0;i<=3; i++)
+                    for(int i =0;i<repair.star; i++)
                       Padding(
                         padding: const EdgeInsets.only(right: 5),
                         child: SizedBox(
@@ -136,10 +140,14 @@ class ItemRepairView extends StatelessWidget{
                             height: 16,
                             child: Image.asset(star_bole)),
                       ),
-                    SizedBox(
-                        width: 19,
-                        height: 19,
-                        child: SvgPicture.asset(starbll))
+                    for(int i =0 ;i<5 -repair.star;i++)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: SizedBox(
+                          width: 19,
+                          height: 19,
+                          child: SvgPicture.asset(starbll)),
+                    )
                   ],
                 )
               ],

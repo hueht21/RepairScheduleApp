@@ -23,26 +23,13 @@ class HomePageControl extends GetxController {
   late GoogleMapController mapController;
   final Completer<GoogleMapController> controllerMap = Completer();
   RxList<Marker> allMarkers = RxList([]);
-   @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-    log("đã được đóng vào đây ");
-  }
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-    log("đã được vào redy ");
 
-  }
   @override
   void onInit() async {
     super.onInit();
+    await getLocation();
     await loadIcon();
     await loadIconRepair();
-    // await getDataRepair();
-    await getLocation();
     //log("dữ liệu UID đã chuyển đổi sang màn mới" + HomeControler.Uid);
     //getLatitude();
     // await BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(48, 48)), "assets/img/map.png")
@@ -51,8 +38,7 @@ class HomePageControl extends GetxController {
     //     });
     log("dayyy nayyyyyyyyyy");
   }
-  Future getDataRepair() async
-  {
+  Future getDataRepair() async {
     await FirebaseFirestore.instance.collection("Repair").get().then((snapshot) => snapshot.docs.forEach((element)  {
       Repair repair =  getRepair(element.data());
       list.add(repair);
@@ -60,12 +46,7 @@ class HomePageControl extends GetxController {
     }));
 
   }
-  // Future<List<Repair>> getList(Repair repair) async
-  // {
-  //   return await list.add(repair);
-  // }
-  Repair getRepair(Map<String,dynamic> map) 
-  {
+  Repair getRepair(Map<String,dynamic> map) {
     return Repair.fromJsonString(map);
   }
   getLocation() async {
@@ -101,11 +82,9 @@ class HomePageControl extends GetxController {
     LatLng current = LatLng(x, y);
     return current;
   }
-
-  LatLng current2 = const LatLng(20.97902398945378, 105.79489933934353);
   CameraPosition kGooglePlex = const CameraPosition(
     target: LatLng(20.98309121380638, 105.80134688698458),
-    zoom: 14.4746,
+    zoom: 12.5,
   );
 
   Future<void> loadIcon() async {
@@ -132,13 +111,13 @@ class HomePageControl extends GetxController {
     allMarkers.add(maker);
   }
 
-  addMarkerRepair(String id, LatLng local) {
+  addMarkerRepair(String id, LatLng local, Repair repair) {
     var maker = Marker(
         markerId: MarkerId(id),
         position: local,
-        infoWindow: const InfoWindow(
-            title: "Đinh Văn Khánh",
-            snippet: "Có kinh nghiệm 4 năm"),
+        infoWindow:  InfoWindow(
+            title: "${repair!.name}",
+            snippet: "Làm việc uy tín nhanh nhẹ"),
         icon: iconRepair,
         onTap: ()
         {
@@ -146,7 +125,7 @@ class HomePageControl extends GetxController {
           if(idex == 1) {
               log("da vao dayy 1");
               Get.bottomSheet(
-                ItemRepairView(),
+                ItemRepairView(repair: repair,),
                 isDismissible: false,
               );
             }

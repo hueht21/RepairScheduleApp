@@ -9,6 +9,7 @@ import 'package:repair_schedule_app/modules/home_oder/views/home_oder_view.dart'
 import 'package:repair_schedule_app/modules/home_map/views/home_map_view.dart';
 
 import '../../../app/utils/svg.dart';
+import '../../home_ticket/views/home_ticket.dart';
 import '../../home_user/views/home_user_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
 
   var uid = "";
 
-  final Facment = [HomeMap(), HomeOder(), HomeUser()];
+  final Facment = [HomeMap(), HomeOder(),HomeTicket(), HomeUser(),];
   @override
   initState()
   {
@@ -41,16 +42,18 @@ class _HomeViewState extends State<HomeView> {
               type: BottomNavigationBarType.fixed,
               items: [
                 _bomtomNavi(homesvg, "Trang chủ",
-                    controller.selectIndex == 0 ? Colors.orange : Colors.black),
+                    controller.selectIndex == 0 ? const Color(0xff6B46D6) : const Color(0xff888888)),
                 _bomtomNavi(odersvg, "Đơn đặt",
-                    controller.selectIndex == 1 ? Colors.orange : Colors.black),
-                _bomtomNavi(usersvg, "Tài khoản",
-                    controller.selectIndex == 2 ? Colors.orange : Colors.black)
+                    controller.selectIndex == 1 ? const Color(0xff6B46D6) : const Color(0xff888888)),
+                _bomtomNavi(ticketnavi, "Vouchers",
+                    controller.selectIndex == 2 ? const Color(0xff6B46D6) : const Color(0xff888888)),
+                _bomtomNavi(usersvg, "Cá nhân",
+                    controller.selectIndex == 3 ? const Color(0xff6B46D6) : const Color(0xff888888))
               ],
               unselectedLabelStyle: const TextStyle(fontSize: 12),
               selectedLabelStyle: const TextStyle(fontSize: 12),
               currentIndex: controller.selectIndex.value,
-              selectedItemColor: Colors.amber[800],
+              selectedItemColor: const Color(0xff6B46D6),
               onTap: controller.setIndex,
             ))
     );

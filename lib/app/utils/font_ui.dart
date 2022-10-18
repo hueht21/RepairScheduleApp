@@ -23,4 +23,38 @@ class FontStyleHomeMap {
         fontWeight: FontWeight.w200,
         color: const Color(0xff574B78));
   }
+  static TextStyle font12W400()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: const Color(0xff574B78)
+    );
+  }
+
+  static TextStyle font16W600()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: Colors.white
+    );
+  }
+  static TextStyle font10W500()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+        color: const Color(0xff574B78)
+    );
+  }
+  static TextStyle font16W700()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: const Color(0xff574B78)
+    );
+  }
 }
+
