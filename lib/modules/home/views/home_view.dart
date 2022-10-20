@@ -9,7 +9,7 @@ import 'package:repair_schedule_app/modules/home_oder/views/home_oder_view.dart'
 import 'package:repair_schedule_app/modules/home_map/views/home_map_view.dart';
 
 import '../../../app/utils/svg.dart';
-import '../../home_ticket/views/home_ticket.dart';
+import '../../home_ticket/views/home_ticket_view.dart';
 import '../../home_user/views/home_user_view.dart';
 
 class HomeView extends StatefulWidget {

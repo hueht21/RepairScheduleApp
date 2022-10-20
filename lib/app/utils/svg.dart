@@ -12,3 +12,12 @@ const String truckcar = "assets/SVG/caricon.svg";
 const String listRepair = "assets/SVG/listrepair.svg";
 const String experience = "assets/SVG/experience.svg";
 const String carbus = "assets/SVG/otobus.svg";
+const String sortuser = "assets/SVG/sortuser.svg";
+const String messengeruser = "assets/SVG/messengeruser.svg";
+const String editname = "assets/SVG/editname.svg";
+const String nextuser = "assets/SVG/nextuser.svg";
+const String payuser = "assets/SVG/payuser.svg";
+const String help = "assets/SVG/helpuser.svg";
+const String setting = "assets/SVG/settinguser.svg";
+const String logout = "assets/SVG/logout.svg";
+

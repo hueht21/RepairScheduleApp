@@ -8,3 +8,6 @@ const String user_bottom = "assets/img/user_bottom.png";
 const String phone_bottom = "assets/img/phone.png";
 const String messages = "assets/img/messages.png";
 const String star_bole = "assets/img/starbl.png";
+const String ticket = "assets/img/ticket.png";
+const String backgrouduser = "assets/img/backgrounduser.png";
+const String useruser = "assets/img/useruser.png";

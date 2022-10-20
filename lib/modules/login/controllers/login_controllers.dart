@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -12,6 +13,35 @@ import 'package:get/get_core/src/get_main.dart';
 
 class LoginControler extends GetxController {
 
+
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    getLocation();
+
+  }
+  getLocation() async
+  {
+    bool serviceEnable;
+    LocationPermission permission;
+    serviceEnable = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnable) {
+      await Geolocator.openLocationSettings();
+      return Future.error("Location service are disable");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+
+        return Future.error("Location service are disable");
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error("Location service are disable");
+    }
+  }
   String UID = "";
   Future<FirebaseApp> initalizeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
@@ -45,7 +75,7 @@ class LoginControler extends GetxController {
           colorText: Colors.black,
           backgroundColor: Colors.white);
           //if(firebase.auth().currentUser)
-          Get.toNamed("/home", arguments: [UID]);
+          Get.offNamed("/home", arguments: [UID]);
 
       //print(user);
     } else {

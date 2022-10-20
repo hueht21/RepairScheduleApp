@@ -104,7 +104,34 @@ class HomeMap extends StatelessWidget {
                     height: 200,
                     child: Obx(() {
                       //log("co duoc update hay khong");
-                      return viewMap();
+                      return GoogleMap(
+                        mapType: MapType.normal, // thể loại bản đồ , địa hình
+                        markers: Set<Marker>.of(controller.allMarkers),
+                        initialCameraPosition: controller.kGooglePlex,
+                        onMapCreated: (GoogleMapController control) async {
+                          controller.controllerMap.complete(control);
+                          await controller.getDataRepair();
+
+
+
+                          for(Repair i in controller.list) {
+                            controller.addMarkerRepair(
+                                "${i.id}",
+                                controller.indexMap(
+                                    i.latitude, i.longitude),i);
+                          }
+                          //
+                          controller.addMarker(
+                              "Test3",
+                              controller.indexMap(
+                                  controller.latitude.value,
+                                  controller.longitude
+                                      .value));
+                          log(" so lương trong list ${controller.list.length}");
+
+
+                        },
+                      );
                     }),
                   ),
                 ),
@@ -122,7 +149,7 @@ class HomeMap extends StatelessWidget {
       height: 76,
       child: Column(
         children: [
-          _optionCircle(width: 54, height: 54, icon: icon, check: check),
+          optionCircle(width: 54, height: 54, icon: icon, check: check),
           const SizedBox(
             height: 6,
           ),
@@ -131,31 +158,31 @@ class HomeMap extends StatelessWidget {
       ),
     );
   }
-  Widget viewMap() {
-    return GoogleMap(
-      mapType: MapType.normal, // thể loại bản đồ , địa hình
-      markers: Set<Marker>.of(controller.allMarkers),
-      initialCameraPosition: controller.kGooglePlex,
-      onMapCreated: (GoogleMapController control) async {
-        await controller.getDataRepair();
-        controller.controllerMap.complete(control);
-        controller.addMarker(
-            "Test3",
-            controller.indexMap(
-                controller.latitude.value,
-                controller.longitude
-                    .value));
-        log(" so lương trong list ${controller.list.length}");
-
-        for(Repair i in controller.list) {
-          controller.addMarkerRepair(
-              "${i.id}",
-              controller.indexMap(
-                  i.latitude, i.longitude),i);
-        }
-      },
-    );
-  }
+  // Widget viewMap() {
+  //   return GoogleMap(
+  //     mapType: MapType.normal, // thể loại bản đồ , địa hình
+  //     markers: Set<Marker>.of(controller.allMarkers),
+  //     initialCameraPosition: controller.kGooglePlex,
+  //     onMapCreated: (GoogleMapController control) async {
+  //       await controller.getDataRepair();
+  //       controller.controllerMap.complete(control);
+  //       controller.addMarker(
+  //           "Test3",
+  //           controller.indexMap(
+  //               controller.latitude.value,
+  //               controller.longitude
+  //                   .value));
+  //       log(" so lương trong list ${controller.list.length}");
+  //
+  //       for(Repair i in controller.list) {
+  //         controller.addMarkerRepair(
+  //             "${i.id}",
+  //             controller.indexMap(
+  //                 i.latitude, i.longitude),i);
+  //       }
+  //     },
+  //   );
+  // }
   Widget viewSearchNotifications() {
     return Row(
       children: [
@@ -190,11 +217,11 @@ class HomeMap extends StatelessWidget {
         const SizedBox(
           width: 18,
         ),
-        _optionCircle(width: 46, height: 46, icon: notification)
+        optionCircle(width: 46, height: 46, icon: notification)
       ],
     );
   }
-  Widget _optionCircle({required double width, required double height,required String icon, int? check}) {
+  Widget optionCircle({required double width, required double height,required String icon, int? check}) {
     return Container(
         width: width,
         height: height,
