@@ -1,16 +1,7 @@
-# repair_schedule_app
+Xây dựng ứng dụng đặt lịch thợ sửa
 
-A new Flutter project Repair schedule
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://user-images.githubusercontent.com/90894261/197327323-88ece47e-22e5-4cbd-b600-c8bceb711bcb.png)
+![image](https://user-images.githubusercontent.com/90894261/197327255-3186e0b6-d8a7-4714-a9b9-20ca590efd2e.png)
+![image](https://user-images.githubusercontent.com/90894261/197327257-20fc1975-9cfb-45c9-9e4f-886ce032f5b0.png)
+![image](https://user-images.githubusercontent.com/90894261/197327251-3bf410bf-b84d-455b-941f-a7931d32a024.png)
+![image](https://user-images.githubusercontent.com/90894261/197327270-81a48163-c5af-4129-a9fc-38e160d7f160.png)
