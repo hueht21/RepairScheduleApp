@@ -23,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
 
   var uid = "";
 
-  final Facment = [HomeMap(), HomeOder(),HomeTicket(), HomeUser(),];
+
   @override
   initState()
   {
@@ -35,6 +35,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final Facment = [HomeMap(), HomeOder(),HomeTicket(), HomeUser()];
     return Obx(() =>
         Scaffold(
             body: Facment[controller.selectIndex.value],

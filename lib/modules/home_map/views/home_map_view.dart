@@ -46,7 +46,11 @@ class HomeMap extends StatelessWidget {
                       width: 15.21,
                       height: 46,
                     ),
-                    _viewOption(color: 0xff6B46D6, name: "Đặt lịch thợ sửa", icon: repairbook),
+                    InkWell(
+                      onTap: () {
+                          Get.toNamed("/register_schedule");
+                      },
+                        child: _viewOption(color: 0xff6B46D6, name: "Đặt lịch thợ sửa", icon: repairbook)),
                     const SizedBox(
                       width: 21,
                     ),

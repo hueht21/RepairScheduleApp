@@ -6,8 +6,10 @@ import 'package:repair_schedule_app/app/utils/font_ui.dart';
 import 'package:repair_schedule_app/app/utils/img.dart';
 import 'package:repair_schedule_app/app/utils/svg.dart';
 import 'package:repair_schedule_app/modules/home_map/views/home_map_view.dart';
+import 'package:repair_schedule_app/modules/home_user/controllers/home_user_controller.dart';
 
 class HomeUser extends StatelessWidget {
+  HomeUserController controller = Get.put(HomeUserController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +97,7 @@ class HomeUser extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
                                       children: [
-                                        Text("Tô Vũ Ngọc Linh",
+                                        Text(controller.user!.name,
                                           style: FontStyleHomeUser
                                               .font20W700(),),
                                         const SizedBox(
@@ -104,7 +106,7 @@ class HomeUser extends StatelessWidget {
                                         SvgPicture.asset(editname)
                                       ],
                                     ),
-                                    Text("ngoclinh123@gmail.com",
+                                    Text(controller.user!.email,
                                       style: FontStyleHomeUser.font15W400(),)
                                   ],
                                 ),

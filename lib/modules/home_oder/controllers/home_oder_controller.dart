@@ -6,8 +6,9 @@ import 'package:repair_schedule_app/data/models/RepairSchedule.dart';
 
 class HomeOderController extends GetxController{
   RxInt index = 0.obs;
+  RxList<RepairSchedule> listRepairSchedule = RxList([]);
   @override
-  void onInit()  async {
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
     await getDataWaiting();
@@ -22,6 +23,7 @@ class HomeOderController extends GetxController{
           //RepairSchedule repairSchedule = RepairSchedule.fromMap(element.data());
 
           log("data repair schedule ${repairSchedule.phone}" );
+          listRepairSchedule.add(repairSchedule);
 
      }));
   }

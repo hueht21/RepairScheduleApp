@@ -1,7 +1,10 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:repair_schedule_app/data/models/RepairSchedule.dart';
 import 'package:repair_schedule_app/modules/home_oder/controllers/home_oder_controller.dart';
 import '../../../app/utils/font_ui.dart';
 
@@ -9,8 +12,11 @@ class HomeOder extends StatelessWidget {
   List<String> listItem = ["Đang chờ", "Đã đặt", "Hoàn thành", "Đã huỷ"];
   final HomeOderController controller = Get.put(HomeOderController());
 
+
+
   @override
   Widget build(BuildContext context) {
+    final viewList = [listWaiting() , listBook() , listFinish(), listCance()];
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
@@ -52,66 +58,11 @@ class HomeOder extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width -12,
-                  height: 145,
-                  child: Card(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("Nguyễn Văn A", style: FontStyleHomeOder.font16W700(),),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("0376926500", style: FontStyleHomeOder.font14W500(),),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("15:07", style: FontStyleHomeOder.font14W500(),),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("13-07-2022", style: FontStyleHomeOder.font14W500(),),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("Ngõ 111 - Triều khúc - Thanh xuân - Hà nội", style: FontStyleHomeOder.font14W500(),),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text("Lưu ý : Hỏng đường điện điều hoà", style: FontStyleHomeOder.font14W500(),),
-                          ],
-                        ),
-                      ],
-                    ),
+                // pát vao day
+                Obx(()
+                  => Expanded(
+                    child: viewList[controller.index.value] // paste vào đây
+
                   ),
                 )
               ],
@@ -120,6 +71,71 @@ class HomeOder extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _itemViewListWaiting(BuildContext context, RepairSchedule repairSchedule) {
+     return SizedBox(
+       width: MediaQuery.of(context).size.width -12,
+       height: 145,
+       child: Card(
+         child: Column(
+           children: [
+             const SizedBox(
+               height: 10,
+             ),
+             Row(
+               children: [
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.name, style: FontStyleHomeOder.font16W700(),),
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.phone, style: FontStyleHomeOder.font14W500(),),
+               ],
+             ),
+             const SizedBox(
+               height: 9,
+             ),
+             Row(
+               children: [
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.time, style: FontStyleHomeOder.font14W500(),),
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.date, style: FontStyleHomeOder.font14W500(),),
+               ],
+             ),
+             const SizedBox(
+               height: 9,
+             ),
+             Row(
+               children: [
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.address, style: FontStyleHomeOder.font14W500(),),
+               ],
+             ),
+             const SizedBox(
+               height: 9,
+             ),
+             Row(
+               children: [
+                 const SizedBox(
+                   width: 20,
+                 ),
+                 Text(repairSchedule.note, style: FontStyleHomeOder.font14W500(),),
+               ],
+             ),
+           ],
+         ),
+       ),
+     );
   }
 
   Widget _listMenu(BuildContext context) {
@@ -158,6 +174,40 @@ class HomeOder extends StatelessWidget {
               )),
         ),
       ),
+    );
+  }
+  Widget listWaiting()
+  {
+    return ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: controller.listRepairSchedule.length,
+        itemBuilder: (context, index) {
+          if (index != hashCode) {
+            return _itemViewListWaiting(
+                context, controller.listRepairSchedule[index]);
+          }
+          else {
+            return const Text("Bạn chưa có đơn đang chờ nào");
+          }
+        }
+    );
+  }
+  Widget listBook()
+  {
+    return Center(
+      child: Text("Chưa có đơn hàng nào", style: FontStyleHomeOder.font14W500(),),
+    );
+  }
+  Widget listFinish()
+  {
+    return Center(
+      child: Text("Chưa có đơn hàng nào", style: FontStyleHomeOder.font14W500(),),
+    );
+  }
+  Widget listCance()
+  {
+    return Center(
+      child: Text("Chưa có đơn hàng nào", style: FontStyleHomeOder.font14W500(),),
     );
   }
 }

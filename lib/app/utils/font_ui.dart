@@ -168,4 +168,37 @@ class FontStyleHomeUser {
     );
   }
 }
-
+class FontStyleRegister{
+  static TextStyle font12W400()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: const Color(0xff888888)
+    );
+  }
+  static TextStyle font16W700()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: Colors.black
+    );
+  }
+  static TextStyle font14W500()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Colors.black
+    );
+  }
+  static TextStyle font15W500()
+  {
+    return GoogleFonts.plusJakartaSans().copyWith(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Colors.white
+    );
+  }
+}

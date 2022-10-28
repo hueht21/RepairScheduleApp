@@ -1,5 +1,6 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:repair_schedule_app/modules/register_schedule/views/register_schedule_view.dart';
 
 import '../modules/home/views/home_view.dart';
 import '../modules/home_map/views/home_map_view.dart';
@@ -24,6 +25,10 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView()
+    ),
+    GetPage(
+        name: _Paths.REGISTER_SCHEDULE,
+        page: () => RegisterScheduleView()
     ),
     
   ];
